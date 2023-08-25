@@ -14,70 +14,58 @@ const imgs = [
 ];
 
 function Home() {
-  const [img, setImg] = useState(0);
+  const [num, setNum] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setImg((v) => {
+      setNum((v) => {
         return v === 3 ? 0 : v + 1;
       });
-    }, 10000);
+    }, 8000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      <motion.div
-        key={imgs[img]}
-        initial={{ x: 300, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -300, opacity: 0 }}
-      >
-        <div
+        <motion.div 
+          key={imgs[num]}
+          initial={{ x: 300, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{  x:-300, opacity: 0 }}
+          transition={{duration: 1}}
           style={{
             width: "100vw",
             height: "100vh",
-            backgroundImage: `${imgs[img]}`,
+            backgroundImage: `${imgs[num]}`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
             position: "fixed",
-            color: `${colors[img]}`,
+            color: `${colors[num]}`,
           }}
-          // onClick={() => {navigate('/about')}}
         >
-          <div class="container-text text-start">
-            <div class="p-5">
-              <div className="textA">
-                <h3 class="fst-italic">Welcome! </h3>
-                <h2 class="fw-bold">This is the place!</h2>
-                <div class="mb-3 fs-5 mt-3">Let's Rent something!</div>
+            <div class="container-text text-start">
+              <div class="p-5">
+                <div className="textA">
+                  <h3 class="fst-italic">Welcome! </h3>
+                  <h2 class="fw-bold">This is the place!</h2>
+                  <div class="mb-3 fs-5 mt-3">Let's Rent something!</div>
 
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="btn item"
-                >
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     className="btn item"
                     onClick={() => {
                       navigate("/products");
                     }}
-                  >
-                    Rent Now
-                  </button>
-                </motion.button>
+                  >   
+                      Rent Now
+                  </motion.button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="fs-3 icon">
-            <motion.div whileHover={{ scale: 1.3 }} whileTap={{ scale: 0.9 }}>
-              <FiChevronRight />
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
     </>
   );
 }

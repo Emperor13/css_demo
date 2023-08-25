@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import classes from "./Products.module.css";
+import ProductsBrand from "../components/ProductsBrand";
 
 function Products() {
   return (
-    <div>
-        <h1>This is Products Page!</h1>
-    </div>
-  )
+    <>
+      <ProductsBrand />
+      <div className={classes.mainGrid}>
+        <div className={classes.text}>
+          <h1>This is a products page</h1>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Products
+export default Products;
